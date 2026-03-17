@@ -1,0 +1,12 @@
+---
+- name: Download Consul Template
+  ansible.builtin.get_url:
+    url: "https://releases.hashicorp.com/consul-template/{{ consul_template_version }}/consul-template_{{ consul_template_version }}_linux_amd64.zip"
+    dest: "/tmp/consul-template.zip"
+
+- name: Unarchive to bin
+  ansible.builtin.unarchive:
+    src: "/tmp/consul-template.zip"
+    dest: "{{ consul_install_dir }}"
+    remote_src: true
+    mode: '0755'
