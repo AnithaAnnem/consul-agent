@@ -1,0 +1,26 @@
+---
+- name: Create cert directory
+  ansible.builtin.file:
+    path: "{{ consul_config_dir }}/certs"
+    state: directory
+    mode: '0755'
+
+- name: Copy TLS certs from Role files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ consul_config_dir }}/certs/{{ item }}"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: '0600'
+  loop:
+    - tls.crt
+    - tls.key
+
+- name: Deploy Client HCL
+  ansible.builtin.template:
+    src: client.hcl.j2
+    dest: "{{ consul_config_dir }}/client.hcl"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: '0640'
+  notify: Restart Consul
