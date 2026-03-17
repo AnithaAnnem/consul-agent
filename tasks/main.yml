@@ -1,16 +1,4 @@
 ---
-- name: Install Consul Binary
-  import_tasks: install.yml
-
-- name: Create Directories
-  import_tasks: directories.yml
-
-- name: Configure Agent
-  import_tasks: config.yml
-
-- name: Setup Systemd
-  import_tasks: service.yml
-
-- name: Install Consul Template (Envoy only)
-  import_tasks: consul_template.yml
-  when: install_consul_template | bool
+- include_tasks: install.yml
+- include_tasks: config.yml
+- include_tasks: service.yml
