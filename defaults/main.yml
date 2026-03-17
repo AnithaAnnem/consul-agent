@@ -17,7 +17,7 @@ consul_retry_join:
   - "192.168.8.35"
 
 # This must match your server gossip key
-consul_gossip_key: "YOUR_DECRYPTED_GOSSIP_KEY"
+consul_gossip_key: ""
 
 # Consul Template version for Envoy
 install_consul_template: false
