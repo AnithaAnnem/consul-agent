@@ -1,0 +1,24 @@
+---
+consul_version: "1.17.0"
+consul_user: "consul"
+consul_group: "consul"
+
+consul_install_dir: "/usr/local/bin"
+consul_data_dir: "/var/lib/consul"
+consul_config_dir: "/etc/consul.d"
+
+consul_is_server: false  # Explicitly false for agents
+consul_enable_ui: false
+
+# Your existing Cluster IPs
+consul_retry_join:
+  - "192.168.8.138"
+  - "192.168.8.220"
+  - "192.168.8.35"
+
+# This must match your server gossip key
+consul_gossip_key: "YOUR_DECRYPTED_GOSSIP_KEY"
+
+# Consul Template version for Envoy
+install_consul_template: false
+consul_template_version: "0.39.0"
